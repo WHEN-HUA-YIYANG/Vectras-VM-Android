@@ -292,7 +292,7 @@ public class StoreItemActivity extends AppCompatActivity {
 			ad.setTitle(getString(R.string.downloaded_successfully));
 			String fileName = URLUtil.guessFileName(link,null,null);
 			ad.setMessage(getString(R.string.downloaded_to_path)+AppConfig.downloadsFolder+fileName);
-			ad.setButton(Dialog.BUTTON_POSITIVE, "OK", new DialogInterface.OnClickListener() {
+			ad.setButton(Dialog.BUTTON_POSITIVE, getString(R.string.ok), new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog, int which) {
 					return;
 				}

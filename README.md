@@ -10,70 +10,70 @@
 [![Latest Version][ico-version]][link-releases]
 [![Software License][ico-license]](LICENSE)
 
-Welcome to Vectras VM! A virtual machine app for Android based on QEMU that lets you emulate various OSes including: [![Windows](https://custom-icon-badges.demolab.com/badge/Windows-0078D6?logo=windows11&logoColor=white)](https://www.microsoft.com/en-us/windows) [![Linux](https://img.shields.io/badge/Linux-FCC624?logo=linux&logoColor=black)](https://www.linux.org/) [![macOS](https://img.shields.io/badge/macOS-000000?logo=apple&logoColor=F0F0F0)](https://www.apple.com/macos) [![Android](https://img.shields.io/badge/Android-3DDC84?logo=android&logoColor=white)](https://www.android.com/).
+欢迎来到Vectras VM！这是一个基于 QEMU 的安卓虚拟机APP，它可以模拟运行各种系统，像是：
+ [![Windows](https://custom-icon-badges.demolab.com/badge/Windows-0078D6?logo=windows11&logoColor=white)](https://www.microsoft.com/en-us/windows) [![Linux](https://img.shields.io/badge/Linux-FCC624?logo=linux&logoColor=black)](https://www.linux.org/) [![macOS](https://img.shields.io/badge/macOS-000000?logo=apple&logoColor=F0F0F0)](https://www.apple.com/macos) [![Android](https://img.shields.io/badge/Android-3DDC84?logo=android&logoColor=white)](https://www.android.com/).
 
-If you need help, check out [our documentation](https://vectras.vercel.app/how.html). For quick answers, join the [Vectras Telegram group](http://t.me/vectras_vm_discussion).
+如果你需要我们的任何帮助，请查阅 [我们的文档](https://vectras.vercel.app/how.html)。想要快速解决请加入 [Vectras Telegram 群组](http://t.me/vectras_vm_discussion).
 
 [![Tutorial for beginners](https://img.youtube.com/vi/AlNbverd0xE/0.jpg)](https://www.youtube.com/watch?v=AlNbverd0xE)
 
-## Device Compatibility
+## 兼容的设备
 
-Works fine on devices manufactured in 2021 or later and devices equipped with Snapdragon 855 CPU or better. Here are the devices tested:
+它在 2021 年或之后制造的设备以及配备 Snapdragon 855 CPU 或更高版本的设备上运行良好。以下是测试的设备：
 
-### Works well
+### 运行良好机型
 
 - **Samsung**
 - **Google Pixel**
-- **Xiaomi**
-- **RedMagic**
+- **小米**
+- **红魔**
 
-### Unstable
+### 不稳定机型
 
 - **Oppo**
 - **Realme**
-- **Huawei**
-- **Honor**
-- **Vivo**
+- **华为**
+- **荣耀r**
+- **VIVO**
 
-You can try running Vectras VM on unsupported devices, but we cannot guarantee stability or support.
+您可以尝试在不受支持的设备上运行 Vectras VM，但我们不能保证稳定性或支持。
 
-# Installation
+# ~~安装~~
 
-You can download Vectras VM from the [releases](https://github.com/xoureldeen/Vectras-VM-Android/releases) page or the [official website](https://vectras.vercel.app/download.html).
+你可以从 [releases](https://github.com/xoureldeen/Vectras-VM-Android/releases) 页面， ~~[我们的官方网站](https://vectras.vercel.app/download.html)。或者~~
 
-or
+~~[![OpenAPK](https://www.openapk.net/images/openapk-badge.png)](https://www.openapk.net/vectras-vm/com.vectras.vm/)~~
 
+<font color=#18ff80> 本分支在releases页面下载即可 </font>
 
-[![OpenAPK](https://www.openapk.net/images/openapk-badge.png)](https://www.openapk.net/vectras-vm/com.vectras.vm/)
+## 测试版
 
-## Beta Releases
-
-We publish a **new beta release after every commit** — so you can always test the latest features and improvements!
+**我们会在每次提交后发布一个新的测试版**，因此您可以随时测试最新的功能和改进！
 
 [![Download Beta](https://img.shields.io/badge/Download-Beta-blue?style=for-the-badge&logo=github)](https://github.com/AnBui2004/Vectras-VM-Emu-Android/releases)
 
-### Minimum System Requirements
-- Android 6.0 and up.
-- 3GB RAM (1GB of free RAM).
-- A good processor.
+### 最低系统求
+- Android 6.0 及以上。
+- 3GB 运存 （1GB 可用运存）。
+- 强劲的处理器。
 
-### Recommended System Requirements
-- Android 8.1 and up.
-- 8GB RAM (3GB of free RAM).
-- CPU and Android OS support 64-bit.
-- Snapdragon 855 CPU or better.
-- Integrated or removable cooling system (if running operating systems from 2010 to present).
+### 建议系统要求
+- Android 8.1 及以上。
+- 8GB 运存 （3GB 可用运存）。
+- CPU 和 Android 系统支持 64位。
+- Snapdragon 855 CPU 及更好的处理器。
+- 有集成散热更佳（如果是运行2010年至今的系统）。
 > [!TIP]
-> If the OS you are trying to emulate crashes, try using an older version.
+> 如果您尝试模拟的系统经常崩溃，请尝试使用旧版本。
 
-# Donate
-Help support the project by contributing!
+# 捐赠
+通过贡献来帮助支持项目！
 
 [![Buy Me A Coffee][ico-buymeacoffee]][link-buymeacoffee]
 [![Buy Me a Coffee at ko-fi.com][ico-ko-fi]][link-ko-fi]
 [![Support me on Patreon](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fshieldsio-patreon.vercel.app%2Fapi%3Fusername%3Dendel%26type%3Dpatrons&style=flat)](https://patreon.com/VectrasTeam)
 
-# Thanks to
+# 鸣谢
 - [3DFX QEMU PATCH](https://github.com/kjliew/qemu-3dfx)
 - [Alpine Linux](https://www.alpinelinux.org/)
 - [Glide](https://github.com/bumptech/glide)

@@ -53,6 +53,8 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.Locale;
 
+import es.dmoral.toasty.Toasty;
+
 public class SplashActivity extends AppCompatActivity implements Runnable {
     public static SplashActivity activity;
     private final String TAG = "SplashActivity";
@@ -191,7 +193,7 @@ public class SplashActivity extends AppCompatActivity implements Runnable {
                 if (checkPermission()) {
                 } else {
                     requestPermission();
-                    Toast.makeText(this, "Permission denied to read your External storage", Toast.LENGTH_SHORT).show();
+                    Toasty.normal(this, "Permission denied to read your External storage", Toast.LENGTH_SHORT).show();
                 }
                 return;
         }

@@ -48,6 +48,8 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import es.dmoral.toasty.Toasty;
+
 public class Minitools extends AppCompatActivity {
 
     private ArrayList<HashMap<String, String>> listmapForSelectMirrors = new ArrayList<>();
@@ -89,7 +91,7 @@ public class Minitools extends AppCompatActivity {
                         intent.setAction(ACTION_VIEW);
                         intent.setData(Uri.parse("android-app://com.termux"));
                         startActivity(intent);
-                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.copied), Toast.LENGTH_LONG).show();
+                        Toasty.normal(getApplicationContext(), getResources().getString(R.string.copied), Toast.LENGTH_LONG).show();
                         return;
                     }
                 });
@@ -129,7 +131,7 @@ public class Minitools extends AppCompatActivity {
             alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, getResources().getString(R.string.clean_up), new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
                     VMManager.cleanUp();
-                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.done), Toast.LENGTH_LONG).show();
+                    Toasty.normal(getApplicationContext(), getResources().getString(R.string.done), Toast.LENGTH_LONG).show();
                     restore.setVisibility(GONE);
                     cleanup.setVisibility(GONE);
                 }
@@ -177,7 +179,7 @@ public class Minitools extends AppCompatActivity {
                     cleanup.setVisibility(GONE);
                     restore.setVisibility(GONE);
                     deleteallvm.setVisibility(GONE);
-                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.done), Toast.LENGTH_LONG).show();
+                    Toasty.normal(getApplicationContext(), getResources().getString(R.string.done), Toast.LENGTH_LONG).show();
                 }
             });
             alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE, getResources().getString(R.string.cancel), new DialogInterface.OnClickListener() {
@@ -203,7 +205,7 @@ public class Minitools extends AppCompatActivity {
                     restore.setVisibility(GONE);
                     deleteallvm.setVisibility(GONE);
                     deleteall.setVisibility(GONE);
-                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.done), Toast.LENGTH_LONG).show();
+                    Toasty.normal(getApplicationContext(), getResources().getString(R.string.done), Toast.LENGTH_LONG).show();
                 }
             });
             alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE, getResources().getString(R.string.cancel), new DialogInterface.OnClickListener() {

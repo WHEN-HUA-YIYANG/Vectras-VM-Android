@@ -11,7 +11,7 @@ android {
         minSdk minApi
         targetSdk targetApi
         versionCode 21
-        versionName "v2.9.5-3dfx-rugelach"
+        versionName "v2.9.5-3dfx-Zenless-Zone-Zero"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
     }
@@ -70,6 +70,7 @@ android {
 }
 
 dependencies {
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.7.0'
     implementation 'com.google.android.material:material:1.12.0'
@@ -100,6 +101,8 @@ dependencies {
     implementation 'androidx.activity:activity:1.10.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.2.1'
     implementation 'androidx.preference:preference:1.2.1'
+    implementation 'com.google.code.gson:gson:2.11.0'
+    implementation 'com.github.GrenderG:Toasty:1.5.2'
     compileOnly project(':shell-loader:stub')
     implementation project(":terminal-view")
     

@@ -41,6 +41,8 @@ import com.vectras.vm.logger.VectrasStatus;
 import java.io.IOException;
 import java.util.Scanner;
 
+import es.dmoral.toasty.Toasty;
+
 public class UIUtils {
 
     private static final String TAG = "UIUtils";
@@ -93,7 +95,7 @@ public class UIUtils {
 			@Override
 			public void run() {
 
-				Toast toast = Toast.makeText(activity, errStr, Toast.LENGTH_LONG);
+				Toast toast = Toasty.normal(activity, errStr, Toast.LENGTH_LONG);
 				toast.show();
                 VectrasStatus.logInfo("<font color='#009688'>[I] "+errStr+"</font>");
 
@@ -147,7 +149,7 @@ public class UIUtils {
                 if(context instanceof Activity && ((Activity) context).isFinishing()) {
                     return ;
                 }
-                Toast toast = Toast.makeText(context, errStr, length);
+                Toast toast = Toasty.normal(context, errStr, length);
                 toast.setGravity(gravity, 0, 0);
                 toast.show();
 

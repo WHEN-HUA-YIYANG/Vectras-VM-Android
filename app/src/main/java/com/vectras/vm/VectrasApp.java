@@ -69,6 +69,8 @@ import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 import android.content.res.Resources;
 
+import es.dmoral.toasty.Toasty;
+
 public class VectrasApp extends Application {
 	public static VectrasApp vectrasapp;
 	public static boolean debugLog = false;
@@ -445,7 +447,7 @@ public class VectrasApp extends Application {
 							Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
 							intent.setData(Uri.parse("package:" + activity.getPackageName()));
 							activity.startActivity(intent);
-							Toast.makeText(activity, activity.getResources().getString(R.string.find_and_allow_access_to_storage_in_settings), Toast.LENGTH_LONG).show();
+							Toasty.normal(activity, activity.getResources().getString(R.string.find_and_allow_access_to_storage_in_settings), Toast.LENGTH_LONG).show();
 						} else {
 							ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1000);
 						}

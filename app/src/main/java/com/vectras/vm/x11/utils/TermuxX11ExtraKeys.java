@@ -29,6 +29,8 @@ import com.vectras.vm.R;
 
 import org.json.JSONException;
 
+import es.dmoral.toasty.Toasty;
+
 public class TermuxX11ExtraKeys implements ExtraKeysView.IExtraKeysView {
     @SuppressWarnings("FieldCanBeLocal")
     private final String LOG_TAG = "TermuxX11ExtraKeys";
@@ -215,13 +217,13 @@ public class TermuxX11ExtraKeys implements ExtraKeysView.IExtraKeysView {
             String extrakeys = preferences.getString("extra_keys_config", TermuxX11ExtraKeys.DEFAULT_IVALUE_EXTRA_KEYS);
             mExtraKeysInfo = new ExtraKeysInfo(extrakeys, "extra-keys-style", ExtraKeysConstants.CONTROL_CHARS_ALIASES);
         } catch (JSONException e) {
-            Toast.makeText(mActivity, "Could not load and set the \"extra-keys\" property from the properties file: " + e, Toast.LENGTH_LONG).show();
+            Toasty.normal(mActivity, "Could not load and set the \"extra-keys\" property from the properties file: " + e, Toast.LENGTH_LONG).show();
             Log.e(LOG_TAG, "Could not load and set the \"extra-keys\" property from the properties file: ", e);
 
             try {
                 mExtraKeysInfo = new ExtraKeysInfo(TermuxX11ExtraKeys.DEFAULT_IVALUE_EXTRA_KEYS, "default", ExtraKeysConstants.CONTROL_CHARS_ALIASES);
             } catch (JSONException e2) {
-                Toast.makeText(mActivity, "Can't create default extra keys", Toast.LENGTH_LONG).show();
+                Toasty.normal(mActivity, "Can't create default extra keys", Toast.LENGTH_LONG).show();
                 Log.e(LOG_TAG, "Could create default extra keys: ", e);
                 mExtraKeysInfo = null;
             }

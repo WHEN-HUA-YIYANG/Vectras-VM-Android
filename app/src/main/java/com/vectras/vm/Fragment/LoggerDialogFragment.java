@@ -30,6 +30,8 @@ import java.io.InputStreamReader;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import es.dmoral.toasty.Toasty;
+
 public class LoggerDialogFragment extends DialogFragment {
 
     private final String CREDENTIAL_SHARED_PREF = "settings_prefs";
@@ -82,7 +84,7 @@ public class LoggerDialogFragment extends DialogFragment {
             };
             _timer.scheduleAtFixedRate(t, (int) (0), (int) (100));
         } catch (IOException e) {
-            Toast.makeText(activity, "There was an error: " + Log.getStackTraceString(e), Toast.LENGTH_LONG).show();
+            Toasty.normal(activity, "There was an error: " + Log.getStackTraceString(e), Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
         alertDialog.show();

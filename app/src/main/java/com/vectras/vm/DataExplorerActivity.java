@@ -134,7 +134,7 @@ public class DataExplorerActivity extends AppCompatActivity {
 
                                 .setTitle("[" + file.getName() + "] folder can't be read!")
 
-                                .setPositiveButton("OK",
+                                .setPositiveButton(getString(R.string.ok),
 
                                         new DialogInterface.OnClickListener() {
 

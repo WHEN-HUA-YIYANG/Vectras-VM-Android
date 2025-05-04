@@ -20,6 +20,8 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Objects;
 
+import es.dmoral.toasty.Toasty;
+
 public class CqcmActivity extends AppCompatActivity {
 
     private Intent gotoActivity = new Intent();
@@ -42,7 +44,7 @@ public class CqcmActivity extends AppCompatActivity {
                         Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
                         intent.setData(Uri.parse("package:" + getPackageName()));
                         startActivity(intent);
-                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.find_and_allow_access_to_storage_in_settings), Toast.LENGTH_LONG).show();
+                        Toasty.normal(getApplicationContext(), getResources().getString(R.string.find_and_allow_access_to_storage_in_settings), Toast.LENGTH_LONG).show();
                     } else {
                         ActivityCompat.requestPermissions(CqcmActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1000);
                     }
@@ -108,13 +110,13 @@ public class CqcmActivity extends AppCompatActivity {
                     }
                     VMManager.createNewVM(imgName, imgIcon, imgPath, imgArch, imgCdrom, imgExtra, vmID, VMManager.startRandomPort());
                 } else {
-                    Toast.makeText(getApplicationContext(), "The data for the new virtual machine is corrupted and cannot be created.", Toast.LENGTH_LONG).show();
+                    Toasty.normal(getApplicationContext(), "The data for the new virtual machine is corrupted and cannot be created.", Toast.LENGTH_LONG).show();
                 }
             } else {
-                Toast.makeText(getApplicationContext(), "There is no data about the new virtual machine to create.", Toast.LENGTH_LONG).show();
+                Toasty.normal(getApplicationContext(), "There is no data about the new virtual machine to create.", Toast.LENGTH_LONG).show();
             }
         } else {
-            Toast.makeText(getApplicationContext(), "The virtual machine list data is corrupted and new virtual machines cannot be added right now.", Toast.LENGTH_LONG).show();
+            Toasty.normal(getApplicationContext(), "The virtual machine list data is corrupted and new virtual machines cannot be added right now.", Toast.LENGTH_LONG).show();
         }
         if(!MainActivity.isActivate) {
             Log.i("CqcmActivity", "Vectras VM is not opening.");

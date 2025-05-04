@@ -14,13 +14,13 @@
     tools:ignore="HardcodedText"/>
 
   <Button
-    android:id="@+id/rename_cancel"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_below="@id/new_name"
-    android:layout_toLeftOf="@id/rename_rename"
-    android:text="cancel"
-    tools:ignore="HardcodedText,RtlHardcoded" />
+      android:id="@+id/rename_cancel"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/new_name"
+      android:layout_toLeftOf="@id/rename_rename"
+      android:text="@string/cancel"
+      tools:ignore="HardcodedText,RtlHardcoded" />
 
   <Button
     android:id="@+id/rename_rename"

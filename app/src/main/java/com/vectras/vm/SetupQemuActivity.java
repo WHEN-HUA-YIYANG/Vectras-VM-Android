@@ -5,7 +5,6 @@ import static android.content.Intent.ACTION_VIEW;
 
 import com.termux.app.TermuxService;
 import static com.vectras.vm.utils.UIUtils.UIAlert;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -66,6 +65,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Objects;
+
+import es.dmoral.toasty.Toasty;
 
 public class SetupQemuActivity extends AppCompatActivity implements View.OnClickListener {
     Activity activity;
@@ -286,7 +287,7 @@ public class SetupQemuActivity extends AppCompatActivity implements View.OnClick
             protected void onPostExecute(Boolean success) {
                 progressDialog.dismiss();
                 if (success) {
-                    Toast.makeText(
+                    Toasty.normal(
                                     getApplicationContext(),
                                     R.string.extraction_complete,
                                     Toast.LENGTH_SHORT)
@@ -295,7 +296,7 @@ public class SetupQemuActivity extends AppCompatActivity implements View.OnClick
                     new AlertDialog.Builder(activity)
                             .setTitle("Extraction Failed")
                             .setMessage("Error: " + errorMessage)
-                            .setPositiveButton("OK", null)
+                            .setPositiveButton(getString(R.string.ok), null)
                             .show();
                 }
             }
@@ -521,7 +522,7 @@ public class SetupQemuActivity extends AppCompatActivity implements View.OnClick
                     String toastMessage = "Command failed with exit code: " + exitValue;
                     activity.runOnUiThread(() -> {
                         appendTextAndScroll("Error: " + toastMessage + "\n");
-                        Toast.makeText(activity, toastMessage, Toast.LENGTH_LONG).show();
+                        Toasty.normal(activity, toastMessage, Toast.LENGTH_LONG).show();
                         inBtn.setVisibility(View.VISIBLE);
                         title.setText(getString(R.string.failed));
                         simpleSetupUIControler(2);
@@ -553,7 +554,7 @@ public class SetupQemuActivity extends AppCompatActivity implements View.OnClick
                 final String errorMessage = e.getMessage();
                 activity.runOnUiThread(() -> {
                     appendTextAndScroll("Error: " + errorMessage + "\n");
-                    Toast.makeText(activity, "Error executing command: " + errorMessage, Toast.LENGTH_LONG).show();
+                    Toasty.normal(activity, "Error executing command: " + errorMessage, Toast.LENGTH_LONG).show();
                     inBtn.setVisibility(View.VISIBLE);
                     title.setText("Failed!");
                     simpleSetupUIControler(2);
@@ -655,7 +656,7 @@ public class SetupQemuActivity extends AppCompatActivity implements View.OnClick
             progressDialog.dismiss(); // Dismiss the progress dialog
 
             if (result != null) {
-                Toast.makeText(context, "Download error: " + result, Toast.LENGTH_LONG).show();
+                Toasty.normal(context, "Download error: " + result, Toast.LENGTH_LONG).show();
                 inBtn.setVisibility(View.VISIBLE);
                 title.setText(getString(R.string.failed));
             } else

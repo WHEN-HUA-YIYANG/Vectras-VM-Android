@@ -65,8 +65,8 @@ public class AppUpdater extends AsyncTask<String, String, String> {
         super.onPreExecute();
         if (isOnCreate) {
             progressDialog = new ProgressDialog(context, R.style.MainDialogTheme);
-            progressDialog.setMessage("Please wait for the check");
-            progressDialog.setTitle("Looking for Update");
+            progressDialog.setMessage(context.getString(R.string.please_wait_for_the_check));
+            progressDialog.setTitle(context.getString(R.string.looking_for_update));
             progressDialog.setCancelable(false);
             progressDialog.show();
         }

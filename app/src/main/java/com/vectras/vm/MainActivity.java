@@ -11,6 +11,7 @@ import static com.vectras.vm.utils.LibraryChecker.isPackageInstalled2;
 import static com.vectras.vm.utils.UIUtils.UIAlert;
 
 import android.androidVNC.androidVNC;
+import android.annotation.SuppressLint;
 import android.app.ActivityManager;
 import android.app.Dialog;
 import android.app.NotificationManager;
@@ -35,6 +36,8 @@ import android.os.StrictMode;
 import android.provider.DocumentsContract;
 import android.provider.Settings;
 import android.text.Html;
+import android.text.TextUtils;
+import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
@@ -103,6 +106,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -117,7 +121,9 @@ import com.google.gson.reflect.TypeToken;
 import com.vectras.vm.core.ShellExecutor;
 
 import com.vectras.vm.x11.X11Activity;
+import com.vectras.vm.QuoteFetcher;
 
+import es.dmoral.toasty.Toasty;
 
 public class MainActivity extends AppCompatActivity {
     public static String curRomName;
@@ -172,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
         linearnothinghere = findViewById(R.id.linearnothinghere);
 
         TextView tvLogin = findViewById(R.id.tvLogin);
-        tvLogin.setText("LOGIN --> " + Config.defaultVNCHost + ":" + (5901)/* + "\nPASSWORD --> " + Config.defaultVNCPasswd*/);
+        tvLogin.setText(getString(R.string.login) + Config.defaultVNCHost + ":" + (5901 + getString(R.string.pass_word) + Config.defaultVNCPasswd));
 
         Button stopBtn = findViewById(R.id.stopBtn);
         stopBtn.setOnClickListener(new View.OnClickListener() {
@@ -233,7 +239,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(activity, SetArchActivity.class));
             }
         });
-        Toolbar mainToolbar = (Toolbar) findViewById(R.id.toolbar);
+        CustomToolbar mainToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(mainToolbar);
         mainDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mainDrawer, mainToolbar,
@@ -449,7 +455,7 @@ public class MainActivity extends AppCompatActivity {
                         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
                         builder.setTitle(R.string.x11_feature_not_supported)
                                 .setMessage(R.string.the_x11_feature_is_currently_not_supported_on_android_14_and_above_please_use_a_device_with_android_13_or_below_for_x11_functionality)
-                                .setPositiveButton("OK", (dialog, which) -> dialog.dismiss())
+                                .setPositiveButton(getString(R.string.ok), (dialog, which) -> dialog.dismiss())
                                 .create()
                                 .show();
                     } else {
@@ -473,10 +479,10 @@ public class MainActivity extends AppCompatActivity {
                             // If not installed, show a dialog to install it
                             if (!isInstalled) {
                                 new AlertDialog.Builder(activity, R.style.MainDialogTheme)
-                                        .setTitle("Install XFCE4")
-                                        .setMessage("XFCE4 is not installed. Would you like to install it?")
+                                        .setTitle(getString(R.string.install_XFCE4))
+                                        .setMessage(getString(R.string.XFACE4_not_installed))
                                         .setCancelable(false)
-                                        .setPositiveButton("Install", (dialog, which) -> {
+                                        .setPositiveButton(getString(R.string.install), (dialog, which) -> {
                                             String installCommand = "apk add " + xfce4Package;
                                             new Terminal(activity).executeShellCommand(installCommand, true, activity);
                                         })
@@ -540,7 +546,7 @@ public class MainActivity extends AppCompatActivity {
                         };
                         _timer.scheduleAtFixedRate(t, (int) (0), (int) (100));
                     } catch (IOException e) {
-                        Toast.makeText(activity, "There was an error: " + Log.getStackTraceString(e), Toast.LENGTH_LONG).show();
+                        Toasty.normal(activity, "There was an error: " + Log.getStackTraceString(e), Toast.LENGTH_LONG).show();
                         e.printStackTrace();
                     }
                 } else if (id == R.id.navigation_item_settings) {
@@ -722,6 +728,25 @@ public class MainActivity extends AppCompatActivity {
                 Log.e(TAG, "Errors: " + errors);
             }
         });
+        updateQuote(mainToolbar);
+    }
+
+    private void updateQuote(CustomToolbar toolbar){
+        toolbar.setSubtitle("加载中..."); // 显示加载状态
+        QuoteFetcher.fetchQuote(new QuoteFetcher.QuoteCallback() {
+            @Override
+            public void onSuccess(String quote) {
+                runOnUiThread(() -> toolbar.setSubtitle(quote));
+            }
+
+            @Override
+            public void onFailure(String error) {
+                runOnUiThread(() -> {
+                    toolbar.setSubtitle("格言加载失败");
+                    Toasty.normal(MainActivity.this, error, Toast.LENGTH_SHORT).show();
+                });
+            }
+        });
     }
 
     @Override
@@ -779,7 +804,7 @@ public class MainActivity extends AppCompatActivity {
                         if (MainSettingsManager.getcheckforupdatesfromthebetachannel(activity)) {
                             versionNameonUpdate = obj.getString("versionNameBeta");
 
-                            if (versionCode < obj.getInt("versionCode") || !versionNameonUpdate.equals(versionName)) {
+                            if (versionCode < obj.getInt("versionCode")) {
                                 if (showDialog) {
                                 AlertDialog.Builder alert = new AlertDialog.Builder(activity, R.style.MainDialogTheme);
                                 alert.setTitle("Install the latest version")
@@ -802,13 +827,13 @@ public class MainActivity extends AppCompatActivity {
                         } else {
                             versionNameonUpdate = obj.getString("versionName");
 
-                            if (versionCode < obj.getInt("versionCode") || !versionNameonUpdate.contains(versionName)) {
+                            if (versionCode < obj.getInt("versionCode")) {
                                 if (showDialog) {
                                 AlertDialog.Builder alert = new AlertDialog.Builder(activity, R.style.MainDialogTheme);
-                                alert.setTitle("Install the latest version")
+                                alert.setTitle(getString(R.string.install_the_latest_version))
                                         .setMessage(Html.fromHtml(obj.getString("Message") + "<br><br>Update size:<br>" + obj.getString("size")))
                                         .setCancelable(obj.getBoolean("cancellable"))
-                                        .setNegativeButton("Update", new DialogInterface.OnClickListener() {
+                                        .setNegativeButton(getString(R.string.update), new DialogInterface.OnClickListener() {
                                             public void onClick(DialogInterface dialog, int id) {
                                                 try {
                                                     startActivity(new Intent(ACTION_VIEW, Uri.parse(obj.getString("url"))));
@@ -837,6 +862,7 @@ public class MainActivity extends AppCompatActivity {
         VectrasStatus.logInfo(String.format(error));
     }
 
+    @SuppressLint("SuspiciousIndentation")
     public static void loadDataVbi() {
         data = new ArrayList<>();
 
@@ -934,7 +960,7 @@ public class MainActivity extends AppCompatActivity {
                 else if (MainSettingsManager.getVmUi(activity).equals("X11"))
                     activity.startActivity(new Intent(activity, X11Activity.class));
             } else {
-                Toast.makeText(getApplicationContext(), activity.getResources().getString(R.string.there_is_nothing_here_because_there_is_no_vm_running), Toast.LENGTH_LONG).show();
+                Toasty.normal(getApplicationContext(), activity.getResources().getString(R.string.there_is_nothing_here_because_there_is_no_vm_running), Toast.LENGTH_LONG).show();
             }
         }
 
@@ -1000,7 +1026,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (VectrasApp.isThisVMRunning(itemExtra, itemPath)) {
-            Toast.makeText(activity, activity.getString(R.string.this_vm_is_already_running), Toast.LENGTH_LONG).show();
+            Toasty.normal(activity, activity.getString(R.string.this_vm_is_already_running), Toast.LENGTH_LONG).show();
             if (MainSettingsManager.getVmUi(activity).equals("VNC"))
                 activity.startActivity(new Intent(activity, MainVNCActivity.class));
             else if (MainSettingsManager.getVmUi(activity).equals("X11"))
@@ -1211,7 +1237,7 @@ public class MainActivity extends AppCompatActivity {
                     } else {
                         Terminal _vterm = new Terminal(MainActivity.this);
                         _vterm.executeShellCommand2(AppConfig.pendingCommand, false, MainActivity.activity);
-                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.done), Toast.LENGTH_LONG).show();
+                        Toasty.normal(getApplicationContext(), getResources().getString(R.string.done), Toast.LENGTH_LONG).show();
                     }
                 } else {
                     StartVM.cdrompath = "";

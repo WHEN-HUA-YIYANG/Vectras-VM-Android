@@ -62,6 +62,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import es.dmoral.toasty.Toasty;
+
 public class HomeFragment extends Fragment {
 
     public static View view;
@@ -140,7 +142,7 @@ public class HomeFragment extends Fragment {
             mRVMainRoms.setAdapter(mMainAdapter);
             mRVMainRoms.setLayoutManager(new GridLayoutManager(MainActivity.activity, 2));
         } catch (JSONException e) {
-            Toast.makeText(MainActivity.activity, e.toString(), Toast.LENGTH_LONG).show();
+            Toasty.normal(MainActivity.activity, e.toString(), Toast.LENGTH_LONG).show();
         }
     }
 

@@ -62,6 +62,8 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.regex.PatternSyntaxException;
 
+import es.dmoral.toasty.Toasty;
+
 @SuppressWarnings("deprecation")
 public class LoriePreferences extends AppCompatActivity {
     static final String ACTION_PREFERENCES_CHANGED = "com.vectras.vm.x11.ACTION_PREFERENCES_CHANGED";
@@ -234,7 +236,7 @@ public class LoriePreferences extends AppCompatActivity {
                 new android.app.AlertDialog.Builder(getActivity())
                         .setView(view)
                         .setTitle("Extra keys config")
-                        .setPositiveButton("OK",
+                        .setPositiveButton(getString(R.string.ok),
                                 (dialog, whichButton) -> {
                                     String text = config.getText().toString();
                                     text = !text.isEmpty() ? text : TermuxX11ExtraKeys.DEFAULT_IVALUE_EXTRA_KEYS;
@@ -244,7 +246,7 @@ public class LoriePreferences extends AppCompatActivity {
                                             .apply();
                                 }
                         )
-                        .setNegativeButton("Cancel", (dialog, whichButton) -> dialog.dismiss())
+                        .setNegativeButton(getString(R.string.cancel), (dialog, whichButton) -> dialog.dismiss())
                         .create()
                         .show();
             }
@@ -295,7 +297,7 @@ public class LoriePreferences extends AppCompatActivity {
                 try {
                     v = Integer.parseInt((String) newValue);
                 } catch (NumberFormatException | PatternSyntaxException ignored) {
-                    Toast.makeText(getActivity(), "This field accepts only numerics between 96 and 800", Toast.LENGTH_SHORT).show();
+                    Toasty.normal(getActivity(), "This field accepts only numerics between 96 and 800", Toast.LENGTH_SHORT).show();
                     return false;
                 }
 
@@ -309,7 +311,7 @@ public class LoriePreferences extends AppCompatActivity {
                     Integer.parseInt(resolution[0]);
                     Integer.parseInt(resolution[1]);
                 } catch (NumberFormatException | PatternSyntaxException ignored) {
-                    Toast.makeText(getActivity(), "Wrong resolution format", Toast.LENGTH_SHORT).show();
+                    Toasty.normal(getActivity(), "Wrong resolution format", Toast.LENGTH_SHORT).show();
                     return false;
                 }
             }

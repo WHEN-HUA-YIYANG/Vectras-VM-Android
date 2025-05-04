@@ -17,6 +17,8 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.Objects;
 
+import es.dmoral.toasty.Toasty;
+
 public class ReceiveRomFileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +34,7 @@ public class ReceiveRomFileActivity extends AppCompatActivity {
                     Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
                     intent.setData(Uri.parse("package:" + getPackageName()));
                     startActivity(intent);
-                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.find_and_allow_access_to_storage_in_settings), Toast.LENGTH_LONG).show();
+                    Toasty.normal(getApplicationContext(), getResources().getString(R.string.find_and_allow_access_to_storage_in_settings), Toast.LENGTH_LONG).show();
                 } else {
                     ActivityCompat.requestPermissions(ReceiveRomFileActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1000);
                 }
@@ -64,7 +66,7 @@ public class ReceiveRomFileActivity extends AppCompatActivity {
                         Log.i("ReceiveRomFileActivity", uri.toString());
                         Log.i("ReceiveRomFileActivity", Objects.requireNonNull(getFilePath(uri)));
                     } else {
-                        Toast.makeText(ReceiveRomFileActivity.this, getResources().getString(R.string.format_not_supported_please_select_file_with_format_cvbi), Toast.LENGTH_LONG).show();
+                        Toasty.normal(ReceiveRomFileActivity.this, getResources().getString(R.string.format_not_supported_please_select_file_with_format_cvbi), Toast.LENGTH_LONG).show();
                     }
                 } else if (Intent.ACTION_SEND.equals(action)) {
                     uri = intent.getParcelableExtra(Intent.EXTRA_STREAM);
@@ -82,12 +84,12 @@ public class ReceiveRomFileActivity extends AppCompatActivity {
                             Log.i("ReceiveRomFileActivity", uri.toString());
                             Log.i("ReceiveRomFileActivity", Objects.requireNonNull(getFilePath(uri)));
                         } else {
-                            Toast.makeText(ReceiveRomFileActivity.this, getResources().getString(R.string.format_not_supported_please_select_file_with_format_cvbi), Toast.LENGTH_LONG).show();
+                            Toasty.normal(ReceiveRomFileActivity.this, getResources().getString(R.string.format_not_supported_please_select_file_with_format_cvbi), Toast.LENGTH_LONG).show();
                         }
                     }
                 }
             } else {
-                Toast.makeText(ReceiveRomFileActivity.this, getResources().getString(R.string.you_need_to_complete_vectras_vm_setup_before_importing_this_file), Toast.LENGTH_LONG).show();
+                Toasty.normal(ReceiveRomFileActivity.this, getResources().getString(R.string.you_need_to_complete_vectras_vm_setup_before_importing_this_file), Toast.LENGTH_LONG).show();
                 startActivity(new Intent(this, SplashActivity.class));
             }
             finish();

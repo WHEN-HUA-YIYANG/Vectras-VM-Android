@@ -51,6 +51,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 
+import es.dmoral.toasty.Toasty;
+
 /**
  * 
  * @author dev
@@ -531,7 +533,7 @@ public class FileUtils {
 				new Handler(Looper.getMainLooper()).post(new Runnable() {
 					@Override
 					public void run() {
-						Toast.makeText(context, "Error: " + e, Toast.LENGTH_SHORT).show();
+						Toasty.normal(context, "Error: " + e, Toast.LENGTH_SHORT).show();
 					}
 				});
 			}

@@ -102,6 +102,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import es.dmoral.toasty.Toasty;
+
 public class RomsManagerActivity extends AppCompatActivity {
 
     private RequestNetwork net;
@@ -428,7 +430,7 @@ public class RomsManagerActivity extends AppCompatActivity {
                                 }
 
                             } catch (JSONException e) {
-                                Toast.makeText(MainActivity.activity, e.toString(), Toast.LENGTH_LONG).show();
+                                Toasty.normal(MainActivity.activity, e.toString(), Toast.LENGTH_LONG).show();
                             }
 
                             JSONObject jsonObject = obj.makeJSONObject(selectedName, AppConfig.maindirpath + "icons/" + selectedPath.replace(".IMG", ".jpg"), MainSettingsManager.getArch(activity), AppConfig.maindirpath + selectedPath, selectedExtra);

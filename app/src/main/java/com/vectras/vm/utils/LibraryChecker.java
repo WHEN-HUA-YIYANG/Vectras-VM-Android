@@ -72,7 +72,7 @@ public class LibraryChecker {
         new AlertDialog.Builder(activity, R.style.MainDialogTheme)
                 .setTitle("All Libraries Installed")
                 .setMessage("All required libraries are already installed.")
-                .setPositiveButton("OK", (dialog, which) -> dialog.dismiss())
+                .setPositiveButton(activity.getString(R.string.ok), (dialog, which) -> dialog.dismiss())
                 .show();
     }
 

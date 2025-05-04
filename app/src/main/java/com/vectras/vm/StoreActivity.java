@@ -56,6 +56,8 @@ import java.util.zip.ZipInputStream;
 
 import javax.net.ssl.HttpsURLConnection;
 
+import es.dmoral.toasty.Toasty;
+
 public class StoreActivity extends AppCompatActivity {
     private RecyclerView mRVStore;
     private AdapterStore mAdapter;
@@ -206,7 +208,7 @@ public class StoreActivity extends AppCompatActivity {
                 // Setup and Handover data to recyclerview
 
             } catch (JSONException e) {
-                Toast.makeText(activity, e.toString(), Toast.LENGTH_LONG).show();
+                Toasty.normal(activity, e.toString(), Toast.LENGTH_LONG).show();
             }
             mRVStore = (RecyclerView) findViewById(R.id.storeRv);
             mAdapter = new AdapterStore(activity, data);

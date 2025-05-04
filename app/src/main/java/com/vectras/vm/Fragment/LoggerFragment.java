@@ -46,6 +46,8 @@ import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import es.dmoral.toasty.Toasty;
+
 public class LoggerFragment extends Fragment {
 
     View view;
@@ -98,7 +100,7 @@ public class LoggerFragment extends Fragment {
             };
             _timer.scheduleAtFixedRate(t, (int) (0), (int) (100));
         } catch (IOException e) {
-            Toast.makeText(activity, "There was an error: " + Log.getStackTraceString(e), Toast.LENGTH_LONG).show();
+            Toasty.normal(activity, "There was an error: " + Log.getStackTraceString(e), Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
 

@@ -3,7 +3,7 @@
     <string name="app_name">Vectras VM</string>
 
     <!--======================VECTRAS STRINGS====================-->
-    <string name="app_version" translatable="false">v2.9.5 (3dfx - Rugelachd)</string>
+    <string name="app_version" translatable="false">v2.9.5 (3dfx - Zenless Zone Zero)</string>
     <string name="qemu_version" translatable="false">Stable</string>
     <string name="str_home">Home</string>
     <string name="str_logger">Logger</string>
@@ -686,4 +686,13 @@
     <string name="permission_denied">Permission denied</string>
     <string name="adb_permission_command">Android requires WRITE_SECURE_SETTINGS permission to change this setting.\nPlease, launch this command using ADB:\nadb shell pm grant com.vectras.vm.x11 android.permission.WRITE_SECURE_SETTINGS</string>
     <string name="disclaimer_when_using_rom">By using any files of this ROM or any files containing anything in any way, you agree that we (developers or contributors to Vectras VM) and the creator or creators of this ROM or these files will not be responsible for any unintended problems that will happen to you and your things. But if the creator or creators of this ROM or these files are confirmed to intentionally want to cause harm to you or anyone else, the creator or creators of this ROM or these files will be responsible. And it also means that you have agreed to the Terms and Policies of the owner, provider or owners, providers of the operating system or operating systems contained in this ROM.</string>
+    <string name="install_XFCE4">Install XFCE4</string>
+    <string name="XFACE4_not_installed">XFCE4 is not installed. Would you like to install it?</string>
+    <string name="login">LOGIN --> </string>
+    <string name="pass_word">\nPASSWORD --> </string>
+    <string name="subtitle_content">Subtitle content</string>
+    <string name="install_the_latest_version">Install the latest version</string>
+    <string name="looking_for_update">Looking for Update</string>
+    <string name="please_wait_for_the_check">Please wait for the check</string>
+    <string name="stop_service">STOP SERVICE</string>
 </resources>

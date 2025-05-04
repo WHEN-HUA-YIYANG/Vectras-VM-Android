@@ -74,6 +74,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import es.dmoral.toasty.Toasty;
+
 /**
  * A terminal emulator activity.
  * <p/>
@@ -835,7 +837,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection 
             String url = (String) urls[which];
             ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
             clipboard.setPrimaryClip(new ClipData(null, new String[]{"text/plain"}, new ClipData.Item(url)));
-            Toast.makeText(TermuxActivity.this, R.string.select_url_copied_to_clipboard, Toast.LENGTH_LONG).show();
+            Toasty.normal(TermuxActivity.this, R.string.select_url_copied_to_clipboard, Toast.LENGTH_LONG).show();
         }).setTitle(R.string.select_url_dialog_title).create();
 
         // Long press to open URL:
@@ -978,7 +980,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection 
     /** Show a toast and dismiss the last one if still visible. */
     void showToast(String text, boolean longDuration) {
         if (mLastToast != null) mLastToast.cancel();
-        mLastToast = Toast.makeText(TermuxActivity.this, text, longDuration ? Toast.LENGTH_LONG : Toast.LENGTH_SHORT);
+        mLastToast = Toasty.normal(TermuxActivity.this, text, longDuration ? Toast.LENGTH_LONG : Toast.LENGTH_SHORT);
         mLastToast.setGravity(Gravity.TOP, 0, 0);
         mLastToast.show();
     }

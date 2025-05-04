@@ -88,6 +88,8 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.vectras.vterm.Terminal;
 
+import es.dmoral.toasty.Toasty;
+
 public class CustomRomActivity extends AppCompatActivity {
 
     public static TextInputEditText title;
@@ -987,7 +989,7 @@ public class CustomRomActivity extends AppCompatActivity {
                         }
 
                     } catch (JSONException e) {
-                        Toast.makeText(CustomRomActivity.this, e.toString(), Toast.LENGTH_LONG).show();
+                        Toasty.normal(CustomRomActivity.this, e.toString(), Toast.LENGTH_LONG).show();
                     }
 
                     JSONObject jsonObject = obj.makeJSONObject(Objects.requireNonNull(title.getText()).toString(), Objects.requireNonNull(icon.getText()).toString(), MainSettingsManager.getArch(activity), drive.getText().toString(), qemu.getText().toString());
